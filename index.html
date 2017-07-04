@@ -71,14 +71,24 @@ function calculateSize() {
 	var newHeight = height;
 	var viewableWidth = Math.min(document.documentElement.clientWidth, width);;
 
-	if(width && orientation === 'landscape') {
-		newHeight = Math.round(width/ratio);
-		document.getElementById('height').value = newHeight;
+	if (orientation === 'landscape') {
+		if(width) {
+			newHeight = width/ratio;
+			document.getElementById('height').value = newHeight;
+		} else {
+			newWidth = height*ratio;
+			document.getElementById('width').value = newWidth;
+		}
 	}
 
-	if(height && orientation === 'portrait') {
-		newWidth = Math.round(height/ratio);
-		document.getElementById('width').value = newWidth;
+	if (orientation === 'portrait') {
+		if(height) {
+			newWidth = height/ratio;
+			document.getElementById('width').value = newWidth;
+		} else {
+			newHeight = width*ratio;
+			document.getElementById('height').value = newHeight;
+		}
 	}
 
 	if (realDimensions) {
@@ -88,7 +98,7 @@ function calculateSize() {
 		// Image is at maximum the width of the window
 		// unless you want it to be displayed with the real dimensions
 		viewableWidth = Math.min(document.documentElement.clientWidth, newWidth);
-		viewableHeight = Math.round(viewableWidth / (newWidth / newHeight));
+		viewableHeight = viewableWidth / (newWidth / newHeight);
 		img.style.width = viewableWidth + 'px';
 		img.style.height = viewableHeight + 'px';
 	}
