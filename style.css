@@ -95,6 +95,10 @@ h1, h2 {
   -webkit-transform: rotate(-45deg);
 }
 
+.corner-ribbon.sticky{
+  position: fixed;
+}
+
 .corner-ribbon.top-right{
   top: 25px;
   right: -50px;
