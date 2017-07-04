@@ -9,6 +9,7 @@ By all means, "Remember to be fearless."
 <html>
 <head>
 <link rel="stylesheet" href="style.css"></head>
+<link rel="icon" href="favicon.png" type="image/png" />
 <link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
 <title>Image ratio calculator</title>
 </head>
@@ -16,7 +17,7 @@ By all means, "Remember to be fearless."
 
 <h1>Size your next masterpiece</h1>
 <h2>Because I can't do this in Photoshop. It is SO ridiculous.</h2>
-<div class="corner-ribbon top-right"><a target="_blank" href="https://github.com/eloone">github</a></div>
+<div class="corner-ribbon top-right"><a target="_blank" href="https://github.com/eloone/image-ratio">github</a></div>
 <div class="toolbox">
 <label>Display real dimensions</label>
 <input onchange="calculateSize()" type="checkbox" id="realDimensions"/>
@@ -32,6 +33,7 @@ By all means, "Remember to be fearless."
 	<select onchange="calculateSize()" id="ratio">
 	  <option value="16:9">16:9</option>
 	  <option value="16:10">16:10</option>
+	  <option value="1:1">1:1</option>
 	  <option value="3:2">3:2</option>
 	  <option value="3:2">4:3</option>
 	</select>
