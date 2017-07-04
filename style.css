@@ -1,0 +1,104 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?fk1mma');
+  src:  url('fonts/icomoon.eot?fk1mma#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?fk1mma') format('truetype'),
+    url('fonts/icomoon.woff?fk1mma') format('woff'),
+    url('fonts/icomoon.svg?fk1mma#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Reenie Beanie', cursive;
+  margin: 0;
+}
+
+h1 {
+  color: #d82d05;
+  font-size: 45px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.icon-reload-alt:before {
+  content: "\e900";
+}
+.icon-loop:before {
+  content: "\ea2d";
+}
+
+#img {
+  background: #d82d05;
+}
+
+.frame {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.toolbox {
+  font-size: 24px;
+  text-align: center;
+}
+
+.caption {
+  font-size: 22px;
+}
+
+.caption a {
+  text-decoration: none;
+  color: #d82d05;
+}
+
+.caption a:hover {
+  text-decoration: underline;
+}
+
+.corner-ribbon a {
+  color: #d82d05;
+  font-size: 24px;
+}
+
+.corner-ribbon{
+  width: 200px;
+  background: #f7dc86;
+  position: absolute;
+  top: 25px;
+  left: -50px;
+  text-align: center;
+  line-height: 50px;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.corner-ribbon.top-right{
+  top: 25px;
+  right: -50px;
+  left: auto;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}

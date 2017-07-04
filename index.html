@@ -1,0 +1,115 @@
+<!--
+@eloone Copyright July 2017 - BSD License
+This app allows to calculate image dimensions against a ratio.
+It is used by image hackers to calculate their preferred dimensions before they paint their images.
+Image is copyrighted to @eloone. Please do not use without mentioning credits.
+By all means, "Remember to be fearless."
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css"></head>
+<link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
+<title>Image ratio calculator</title>
+</head>
+<body>
+
+<h1>Size your next masterpiece</h1>
+<h2>Because I can't do this in Photoshop. It is SO ridiculous.</h2>
+<div class="corner-ribbon top-right"><a target="_blank" href="https://github.com/eloone">github</a></div>
+<div class="toolbox">
+<label>Display real dimensions</label>
+<input onchange="calculateSize()" type="checkbox" id="realDimensions"/>
+	<select id="orientation" onchange="calculateSize()" name="orientation">
+	  <option value="landscape">Landscape</option>
+	  <option value="portrait">Portrait</option>
+	</select>
+	<label>Width</label>
+	<input onkeyup="onKeyUp(event.keyCode)" id="width" type="number" value="3000"/>
+	<span title="Reverse dimensions" onclick="reverseDimensions()" class="icon-loop button"></span>
+	<label>Height</label>
+	<input onkeyup="onKeyUp(event.keyCode)" id="height" type="number" value=""/>
+	<select onchange="calculateSize()" id="ratio">
+	  <option value="16:9">16:9</option>
+	  <option value="16:10">16:10</option>
+	  <option value="3:2">3:2</option>
+	  <option value="3:2">4:3</option>
+	</select>
+	<span title="Reset values to default" onclick="reset()" class="icon-reload-alt button"></span>
+</div>
+<div class="frame">
+	<p class="caption">"Remember to be fearless." <a target="_blank" href="https://twitter.com/eloone">@eloone</a></p>
+	<img id="img" src="fearless.svg"/>
+</div>
+
+<script type="text/javascript">
+// Seriously you want a framework for this?
+// Are you freaking kidding me !!!?
+// Leave me alone.
+
+function onKeyUp(keyCode) {
+	if (keyCode === 13) {
+		calculateSize();
+	}
+}
+
+function calculateSize() {
+	var orientation = document.getElementById('orientation').value;
+	var ratioVal = document.getElementById('ratio').value;
+	var parsedRatio = ratioVal.split(':');
+	var leftPart = parseInt(parsedRatio[0], 10);
+	var rightPart = parseInt(parsedRatio[1], 10);
+	var ratio = Math.max(leftPart, rightPart) / Math.min(leftPart, rightPart);
+	var width = document.getElementById('width').value;
+	var height = document.getElementById('height').value;
+	var img = document.getElementById('img');
+	var realDimensions = document.getElementById('realDimensions').checked;
+
+	var newWidth = width;
+	var newHeight = height;
+	var viewableWidth = Math.min(window.innerWidth, width);;
+
+	if(width && orientation === 'landscape') {
+		newHeight = Math.round(width/ratio);
+		document.getElementById('height').value = newHeight;
+	}
+
+	if(height && orientation === 'portrait') {
+		newWidth = Math.round(height/ratio);
+		document.getElementById('width').value = newWidth;
+	}
+
+	if (realDimensions) {
+		img.style.width = newWidth + 'px';
+		img.style.height = newHeight + 'px';
+	} else {
+		// Image is at maximum the width of the window
+		// unless you want it to be displayed with the real dimensions
+		viewableWidth = Math.min(window.innerWidth, newWidth);
+		viewableHeight = Math.round(viewableWidth / (newWidth / newHeight));
+		img.style.width = viewableWidth + 'px';
+		img.style.height = viewableHeight + 'px';
+	}
+}
+
+function reverseDimensions() {
+	var width = document.getElementById('width').value;
+	var height = document.getElementById('height').value;
+
+	document.getElementById('width').value = height;
+	document.getElementById('height').value = width;
+}
+
+function reset() {
+	document.getElementById('width').value = 3000;
+	document.getElementById('ratio').value = '16:9';
+	document.getElementById('orientation').value = 'landscape';
+
+	calculateSize();
+}
+
+calculateSize();
+
+</script>
+</body>
+</html>
